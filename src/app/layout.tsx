@@ -1,3 +1,4 @@
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -27,7 +28,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <main className="mx-auto max-w-3xl p-4">{children}</main>
+        <ReactQueryProvider>
+          <main className="mx-auto max-w-3xl p-4">{children}</main>
+        </ReactQueryProvider>
       </body>
     </html>
   );
