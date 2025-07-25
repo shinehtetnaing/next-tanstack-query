@@ -1,9 +1,12 @@
-import Post from "@/components/Post";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-export default async function Home() {
+export default function Home() {
   return (
     <div>
-      <Post />
+      <Button asChild size="lg">
+        <Link href="/posts">View Posts Demo</Link>
+      </Button>
     </div>
   );
 }
