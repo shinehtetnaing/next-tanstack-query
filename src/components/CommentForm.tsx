@@ -14,11 +14,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+import { createComment } from "@/lib/actions/comment";
 
 const formSchema = z.object({
-  comment: z.string().min(1, { error: "Comment is required" }).max(100, {
-    message: "Comment must not be longer than 100 characters.",
-  }),
+  comment: z
+    .string()
+    .trim()
+    .min(1, { error: "Comment is required." })
+    .max(100, {
+      message: "Comment must not be longer than 100 characters.",
+    }),
 });
 
 const CommentForm = () => {
@@ -29,8 +34,9 @@ const CommentForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    await createComment(values);
+    form.reset();
   }
 
   return (
